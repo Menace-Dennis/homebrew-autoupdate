@@ -16,7 +16,7 @@ module Autoupdate
     auto_args = "update"
     # Spacing at start of lines is deliberate. Don't undo.
     if args.upgrade?
-      auto_args << " && #{Autoupdate::Core.brew} upgrade --formula -v"
+      auto_args << " && #{Autoupdate::Core.brew} upgrade --formula"
 
       if (HOMEBREW_PREFIX/"Caskroom").exist?
         # Support unattended Cask upgrades that require `sudo` where possible.
@@ -35,7 +35,7 @@ module Autoupdate
           EOS
         end
 
-        auto_args << " && #{Autoupdate::Core.brew} upgrade --cask --greedy -v"
+        auto_args << " && #{Autoupdate::Core.brew} upgrade --cask --greedy"
       end
 
       auto_args << " && #{Autoupdate::Core.brew} cleanup" if args.cleanup?
